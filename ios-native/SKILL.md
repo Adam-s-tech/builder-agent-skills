@@ -28,30 +28,29 @@ xcodebuild -scheme <SchemeName> -sdk iphonesimulator -configuration Debug -deriv
 
 ## Running on Simulator (preferred)
 
-Use `npx native-run` to launch the app on an iOS simulator. First list available targets:
+List available simulators:
 
 ```bash
-npx native-run ios --list
+xcrun simctl list devices available
 ```
 
-If there is more than one option, ask the user which one to use.
-
-Then build and run:
+If there is more than one option, ask the user which one to use. Open DeviceHub first, falling back to Simulator.app if it cannot open:
 
 ```bash
-xcodebuild -scheme <SchemeName> -sdk iphonesimulator -configuration Debug -derivedDataPath build build && npx native-run ios --app build/Build/Products/Debug-iphonesimulator/<AppName>.app --target <SimulatorUDID>
+open -a DeviceHub || open -a Simulator
 ```
 
-### Without Node/npx
-
-If Node or `npx` is not available, use `xcrun simctl` directly instead of `native-run`. Get the simulator UDID from `xcrun simctl list devices available` and the bundle identifier from `xcodebuild -showBuildSettings | grep PRODUCT_BUNDLE_IDENTIFIER`:
+Build the app, boot the selected simulator if needed, then install and launch it with `simctl`:
 
 ```bash
+xcodebuild -scheme <SchemeName> -sdk iphonesimulator -configuration Debug -derivedDataPath build build
 xcrun simctl boot <SimulatorUDID>
-open -a Simulator
+xcrun simctl bootstatus <SimulatorUDID> -b
 xcrun simctl install <SimulatorUDID> build/Build/Products/Debug-iphonesimulator/<AppName>.app
 xcrun simctl launch <SimulatorUDID> <BundleIdentifier>
 ```
+
+Skip `simctl boot` when the selected simulator is already booted. Read `<BundleIdentifier>` from the built app's `Info.plist` rather than guessing it.
 
 ## Running on a Physical Device
 
@@ -75,7 +74,7 @@ build/Build/Products/Debug-iphoneos/<AppName>.app           # device
 
 - Always run `xcodebuild -list` first to get the correct scheme name — do not guess it.
 - If the project uses a `.xcworkspace` (e.g. CocoaPods), pass `-workspace <Name>.xcworkspace` instead of `-project`.
-- Use `npx native-run ios --list` to get the exact simulator UDID for the `--target` flag.
+- Use `xcrun simctl list devices available` to get the exact simulator UDID; `native-run` may fail when Simulator.app is absent even if DeviceHub opens.
 - Code signing is not required for simulator builds; for device builds, a valid provisioning profile and team ID are needed. If signing fails, inform the user.
 
 ## Shell command formatting
