@@ -1,13 +1,15 @@
 ---
 name: ios-native
 description: >
-  Build and run the iOS app on a simulator or device. Use when the user asks
-  to build, compile, run, launch, or deploy the iOS app, or mentions Xcode,
-  xcodebuild, xcrun, the IPA, simulator, or native-run, even if they don't
-  explicitly say "ios-native".
+  Set up, verify, build, and run the iOS app on a simulator or device. Use when
+  the user invokes /ios-native install, asks to install or configure Xcode,
+  or asks to build, compile, run, launch, or deploy the iOS app; also use when
+  they mention xcodebuild, xcrun, an IPA, a simulator, or native-run.
 ---
 
 # iOS Native
+
+If the user uses `/ios-native install`, follow [references/install.md](references/install.md).
 
 ## Build
 
@@ -64,7 +66,6 @@ build/Build/Products/Debug-iphoneos/<AppName>.app           # device
 - If the project uses a `.xcworkspace` (e.g. CocoaPods), pass `-workspace <Name>.xcworkspace` instead of `-project`.
 - Use `npx native-run ios --list` to get the exact simulator UDID for the `--target` flag.
 - Code signing is not required for simulator builds; for device builds, a valid provisioning profile and team ID are needed. If signing fails, inform the user.
-- If `xcodebuild` is not found, Xcode Command Line Tools may not be installed (`xcode-select --install`).
 
 ## Shell command formatting
 
