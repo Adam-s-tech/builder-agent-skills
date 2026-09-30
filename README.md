@@ -158,7 +158,7 @@ npx skills add BuilderIO/builder-agent-skills --skill ios-native
 
 ### Using the skill
 
-Ask Builder to build and launch your iOS app. The skill helps with simulator/device selection and `xcodebuild` command flows.
+Ask Builder to build and launch your iOS app. The skill helps with simulator/device selection and `xcodebuild` command flows. Run `/ios-native install` to check and set up Xcode, simulator runtimes, and Node/npx before building.
 
 ## Hallmark
 An anti-AI-slop design skill for building UI, auditing existing designs, redesigning pages, and extracting design DNA from screenshots or URLs.
@@ -368,7 +368,9 @@ builder-agent-skills/
 ├── android-native/          # Build and run Android app
 │   └── SKILL.md
 ├── ios-native/              # Build and run iOS app
-│   └── SKILL.md
+│   ├── SKILL.md
+│   └── references/
+│       └── install.md
 ├── create-instructions/     # Generate AGENTS.md from project conventions
 │   └── SKILL.md
 ├── mobile-testing/          # End-to-end UI testing with Maestro for iOS and Android
