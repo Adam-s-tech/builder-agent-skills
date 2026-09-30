@@ -42,6 +42,17 @@ Then build and run:
 xcodebuild -scheme <SchemeName> -sdk iphonesimulator -configuration Debug -derivedDataPath build build && npx native-run ios --app build/Build/Products/Debug-iphonesimulator/<AppName>.app --target <SimulatorUDID>
 ```
 
+### Without Node/npx
+
+If Node or `npx` is not available, use `xcrun simctl` directly instead of `native-run`. Get the simulator UDID from `xcrun simctl list devices available` and the bundle identifier from `xcodebuild -showBuildSettings | grep PRODUCT_BUNDLE_IDENTIFIER`:
+
+```bash
+xcrun simctl boot <SimulatorUDID>
+open -a Simulator
+xcrun simctl install <SimulatorUDID> build/Build/Products/Debug-iphonesimulator/<AppName>.app
+xcrun simctl launch <SimulatorUDID> <BundleIdentifier>
+```
+
 ## Running on a Physical Device
 
 Use `xcodebuild` with `-sdk iphoneos` and deploy via `xcrun`:
