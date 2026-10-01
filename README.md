@@ -27,6 +27,9 @@ Skills are folders containing a `SKILL.md` file that teach the AI new capabiliti
 | [grill-me](./grill-me/)                             | Stress-test plans and decisions through structured interviews while maintaining domain language and durable decisions             |
 | [stop-slop](./stop-slop/)                           | Remove predictable AI writing patterns from prose                                                                   |
 | [web-prototype](./web-prototype/)                     | Translate a native or desktop application into a faithful, tested web prototype                                     |
+| [improve-codebase](./improve-codebase/)               | Run project-wide code-quality scans and work through the highest-priority issues one at a time                     |
+| [improve-diff](./improve-diff/)                       | Audit the current diff for code-quality issues and fix them interactively                                         |
+| [code-review](./code-review/)                         | Review code or diffs for correctness, security, performance, maintainability, and test coverage                  |
 
 ## Installation
 You can quickly add a specific skill by asking:
@@ -46,6 +49,9 @@ You can quickly add a specific skill by asking:
 - `npx skills add BuilderIO/builder-agent-skills --skill grill-me`
 - `npx skills add BuilderIO/builder-agent-skills --skill stop-slop`
 - `npx skills add BuilderIO/builder-agent-skills --skill web-prototype`
+- `npx skills add BuilderIO/builder-agent-skills --skill improve-codebase`
+- `npx skills add BuilderIO/builder-agent-skills --skill improve-diff`
+- `npx skills add BuilderIO/builder-agent-skills --skill code-review`
 
 
 ## Skill Creator
